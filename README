@@ -9,12 +9,12 @@ hello.py uses "reachforthestars". See growl-setup.png
 
 OSX
 ---
-pip install pybonjour
+pip install -r requirements.txt
 
 Ubuntu
 ------
 apt-get install libavahi-compat-libdnssd-dev libavahi-compat-libdnssd1
-pip install pybonjour
+pip install -r requirements.txt
 
 Uses
 ----
