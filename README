@@ -1,0 +1,24 @@
+Start of a simple tool to notify completion of long running tasks like
+tests via growl whether those tasks run on the local machine or a
+virtual machine.
+
+Setting up Growl
+----------------
+Add a password to Growl in the Allow remote application registration.
+hello.py uses "reachforthestars". See growl-setup.png
+
+OSX
+---
+pip install pybonjour
+
+Ubuntu
+------
+apt-get install libavahi-compat-libdnssd-dev libavahi-compat-libdnssd1
+pip install pybonjour
+
+Uses
+----
+netgrowl- http://the.taoofmac.com/space/projects/netgrowl
+pybonjour- http://code.google.com/p/pybonjour/
+
+
