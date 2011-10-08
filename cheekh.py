@@ -5,16 +5,19 @@ from netgrowl import *
 
 regtype  = "_growl._tcp"
 timeout  = 1
+title = "Reach" if len(sys.argv) < 2 else sys.argv[1]
+description = "For the Stars!" if len(sys.argv) < 3 else sys.argv[2]
+password="reachforthestars"
 hosts = []
 
 def growl_test(name, port):
     addr = (name, GROWL_UDP_PORT)
     s = socket(AF_INET,SOCK_DGRAM)
-    p = GrowlRegistrationPacket(password="reachforthestars")
+    p = GrowlRegistrationPacket(password=password)
     p.addNotification()
     s.sendto(p.payload(), addr)
 
-    p = GrowlNotificationPacket(priority=-2, password="reachforthestars", title="Hello Reach")
+    p = GrowlNotificationPacket(priority=-2, password=password, title=title, description=description)
     s.sendto(p.payload(), addr)
 
 def resolve_callback(sdRef, flags, interfaceIndex, errorCode, fullname,
