@@ -59,7 +59,7 @@ try:
     for n in range(0, 1):
         # Only want to notify one host anyways
         if len(hosts) > 0: break
-        ready = select.select([browse_sdRef], [], [], 1)
+        ready = select.select([browse_sdRef], [], [], 2)
         if browse_sdRef in ready[0]:
             pybonjour.DNSServiceProcessResult(browse_sdRef)
 finally:
