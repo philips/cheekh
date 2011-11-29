@@ -7,7 +7,7 @@ regtype  = "_growl._tcp"
 timeout  = 1
 title = "Reach" if len(sys.argv) < 2 else sys.argv[1]
 description = "For the Stars!" if len(sys.argv) < 3 else sys.argv[2]
-password = "reachforthestars"
+password = "reachforthestars" if len(sys.argv) < 4 else sys.argv[3]
 hosts = []
 
 def growl_test(name, port):
