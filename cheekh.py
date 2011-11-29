@@ -44,10 +44,11 @@ def browse_callback(sdRef, flags, interfaceIndex, errorCode, serviceName,
                                                 resolve_callback)
 
     try:
-       ready = select.select([resolve_sdRef], [], [], timeout)
-       if resolve_sdRef not in ready[0]:
-           print 'Resolve timed out'
-       pybonjour.DNSServiceProcessResult(resolve_sdRef)
+       while not hosts:
+           ready = select.select([resolve_sdRef], [], [], timeout)
+           if resolve_sdRef not in ready[0]:
+               print 'Resolve timed out'
+           pybonjour.DNSServiceProcessResult(resolve_sdRef)
     finally:
         resolve_sdRef.close()
 
@@ -56,10 +57,10 @@ browse_sdRef = pybonjour.DNSServiceBrowse(regtype = regtype,
                                           callBack = browse_callback)
 
 try:
-    for n in range(0, 1):
+    for n in range(0, 3):
         # Only want to notify one host anyways
         if len(hosts) > 0: break
-        ready = select.select([browse_sdRef], [], [], 2)
+        ready = select.select([browse_sdRef], [], [], timeout)
         if browse_sdRef in ready[0]:
             pybonjour.DNSServiceProcessResult(browse_sdRef)
 finally:
